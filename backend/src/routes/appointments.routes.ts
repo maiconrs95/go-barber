@@ -23,7 +23,10 @@ appointmentsRouter.post('/', (request, response) => {
         return response.status(400).json({ message: 'Invalid date.' });
     }
 
-    const appointment = appointmentsRepository.create(provider, date);
+    const appointment = appointmentsRepository.create({
+        provider,
+        date,
+    });
 
     return response.json(appointment);
 });
