@@ -23,8 +23,12 @@
         "prettier"
     ],
     "rules": {
+        "class-methods-use-this": "off",
         "prettier/prettier": "error",
-        "indent": ["error", 4],
+        "indent": [
+            "error",
+            4
+        ],
         "import/extensions": [
             "error",
             "ignorePackages",
