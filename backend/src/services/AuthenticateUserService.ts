@@ -2,6 +2,7 @@ import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
+import authConfig from '../config/auth';
 import User from '../models/User';
 
 interface Request {
@@ -36,9 +37,9 @@ class AuthenticateUserService {
 
         delete user.password;
 
-        const token = sign({}, '4935eefddd20e1c2da613b3e64b65651', {
+        const token = sign({}, authConfig.jwt.secret, {
             subject: user.id,
-            expiresIn: '7d',
+            expiresIn: authConfig.jwt.expiresIn,
         });
 
         return {
