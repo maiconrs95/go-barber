@@ -1,4 +1,5 @@
 import { getRepository } from 'typeorm';
+
 import User from '../models/User';
 
 interface Request {

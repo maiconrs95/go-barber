@@ -23,6 +23,7 @@
         "prettier"
     ],
     "rules": {
+        "@typescript-eslint/camelcase": "off",
         "class-methods-use-this": "off",
         "prettier/prettier": "error",
         "indent": [
