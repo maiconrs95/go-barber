@@ -5,3 +5,5 @@ backend/yarn.lock
 backend/tmp/uploads
 backend/.env
 backend/dist
+backend/tmp*
+!backend/tmb/.gitkeep
