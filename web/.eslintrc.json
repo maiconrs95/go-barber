@@ -29,6 +29,7 @@
         "prettier"
     ],
     "rules": {
+        "no-unused-expressions": "off",
         "prettier/prettier": "error",
         "react/jsx-indent-props": [
             "error",

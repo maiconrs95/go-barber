@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes';
 
 import GlobalStyle from './styles/global';
@@ -8,6 +8,7 @@ import GlobalStyle from './styles/global';
 const App: React.FC = () => {
     const darkTheme = {
         primary: '#ff9000',
+        error: '#c53030',
         main: {
             bg: {
                 color: '#312e38',

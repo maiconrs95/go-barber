@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components';
 
 interface ContainerProps {
-    isFocused: boolean;
-    isFielled: boolean;
+    isFocused?: boolean;
+    isFilled?: boolean;
+    isErrored?: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -26,13 +27,19 @@ export const Container = styled.div<ContainerProps>`
     }
 
     ${(props) =>
+        props.isErrored &&
+        css`
+            color: ${({ theme }) => theme.error};
+            border-color: ${({ theme }) => theme.error};
+        `}
+    ${(props) =>
         props.isFocused &&
         css`
             color: ${({ theme }) => theme.primary};
             border-color: ${({ theme }) => theme.primary};
         `}
     ${(props) =>
-        props.isFielled &&
+        props.isFilled &&
         css`
             color: ${({ theme }) => theme.primary};
         `}

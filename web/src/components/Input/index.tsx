@@ -1,58 +1,63 @@
 import React, {
+    memo,
     useRef,
-    useEffect,
+    forwardRef,
     useState,
     InputHTMLAttributes,
     useCallback,
+    useEffect,
 } from 'react';
-import { useField } from '@unform/core';
 
 import { IconBaseProps } from 'react-icons';
 import { Container } from './styles';
 
 interface Inputprops extends InputHTMLAttributes<HTMLInputElement> {
+    ref?: React.Ref<HTMLInputElement>;
+    error?: string;
     name: string;
     icon: React.ComponentType<IconBaseProps>;
+    register?: any;
 }
 
-const Input: React.FC<Inputprops> = ({ name, icon: Icon, ...rest }) => {
-    const inputRef = useRef<HTMLInputElement>(null);
+const Input: React.FC<Inputprops> = forwardRef(
+    ({ register, error, icon: Icon, ...rest }, ref?) => {
+        const inputRef = useRef<HTMLInputElement>(null);
 
-    const { fieldName, defaultValue, error, registerField } = useField(name);
+        useEffect(() => {
+            register(inputRef.current);
+        }, [inputRef, register]);
 
-    const [isFocused, setIsFocused] = useState(false);
-    const [isFielled, setIsFielled] = useState(false);
+        const [isFocused, setIsFocused] = useState(false);
+        const [isFilled, setIsFilled] = useState(false);
 
-    useEffect(() => {
-        registerField({
-            name: fieldName,
-            ref: inputRef.current,
-            path: 'value',
-        });
-    }, [registerField, fieldName]);
+        const handleInputFocus = useCallback(() => {
+            setIsFocused(true);
+        }, []);
 
-    const handleInputFocus = useCallback(() => {
-        setIsFocused(true);
-    }, []);
+        const handleInputBlur = useCallback(() => {
+            setIsFocused(false);
+            setIsFilled(!!inputRef.current?.value);
+        }, []);
 
-    const handleInputBlur = useCallback(() => {
-        setIsFocused(false);
-        setIsFielled(!!inputRef.current?.value);
-    }, []);
+        return (
+            <Container
+                isErrored={!!error?.length}
+                isFilled={isFilled}
+                isFocused={isFocused}
+            >
+                {Icon && <Icon size={20} />}
 
-    return (
-        <Container isFielled={isFielled} isFocused={isFocused}>
-            {Icon && <Icon size={20} />}
+                <input
+                    {...rest}
+                    ref={inputRef}
+                    onFocus={handleInputFocus}
+                    onBlur={handleInputBlur}
+                />
 
-            <input
-                {...rest}
-                ref={inputRef}
-                onFocus={handleInputFocus}
-                onBlur={handleInputBlur}
-                defaultValue={defaultValue}
-            />
-        </Container>
-    );
-};
+                {error}
+            </Container>
+        );
+    },
+);
 
-export default Input;
+export default memo(Input);
