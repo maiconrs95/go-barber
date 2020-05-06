@@ -7,9 +7,18 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
 
+    :root {
+        --text: red;
+    }
+
     body {
         &.dark {
             --main-bg-color: #312e38;
+            --input-bg-color: #232129;
+
+            --btn-text-color: #312e38;
+            --btn-bg-color: #ff9000;
+
             color: #fff;
         }
 
