@@ -1,4 +1,9 @@
-import React, { InputHTMLAttributes } from 'react';
+import React, {
+    useRef,
+    useState,
+    InputHTMLAttributes,
+    useCallback,
+} from 'react';
 import { IconBaseProps } from 'react-icons';
 import { Container } from './styles';
 
@@ -7,12 +12,33 @@ interface Inputprops extends InputHTMLAttributes<HTMLInputElement> {
     icon: React.ComponentType<IconBaseProps>;
 }
 
-const Input: React.FC<Inputprops> = ({ icon: Icon, ...rest }) => (
-    <Container>
-        {Icon && <Icon size={20} />}
+const Input: React.FC<Inputprops> = ({ icon: Icon, ...rest }) => {
+    const inputRef = useRef<HTMLInputElement>(null);
 
-        <input {...rest} />
-    </Container>
-);
+    const [isFocused, setIsFocused] = useState(false);
+    const [isFielled, setIsFielled] = useState(false);
+
+    const handleInputFocus = useCallback(() => {
+        setIsFocused(true);
+    }, []);
+
+    const handleInputBlur = useCallback(() => {
+        setIsFocused(false);
+        setIsFielled(!!inputRef.current?.value);
+    }, []);
+
+    return (
+        <Container isFielled={isFielled} isFocused={isFocused}>
+            {Icon && <Icon size={20} />}
+
+            <input
+                {...rest}
+                ref={inputRef}
+                onFocus={handleInputFocus}
+                onBlur={handleInputBlur}
+            />
+        </Container>
+    );
+};
 
 export default Input;

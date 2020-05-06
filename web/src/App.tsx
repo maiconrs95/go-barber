@@ -7,6 +7,7 @@ import GlobalStyle from './styles/global';
 
 const App: React.FC = () => {
     const darkTheme = {
+        primary: '#ff9000',
         main: {
             bg: {
                 color: '#312e38',
@@ -16,19 +17,14 @@ const App: React.FC = () => {
             bg: {
                 color: '#232129',
             },
-            placeholder: {
-                color: '#666360',
-            },
         },
         text: {
             light: '#f4ede8',
+            placeholder: '#666360',
         },
         btn: {
             text: {
                 color: '#312e38',
-            },
-            bg: {
-                color: '#ff9000',
             },
         },
     };

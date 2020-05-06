@@ -1,13 +1,18 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
-    color: ${({ theme }) => theme.input.placeholder};
+interface ContainerProps {
+    isFocused: boolean;
+    isFielled: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
     background: ${({ theme }) => theme.input.bg.color};
-    border: 2px solid ${({ theme }) => theme.input.bg.color};
-
     border-radius: 10px;
     padding: 16px;
     width: 100%;
+
+    border: 2px solid ${({ theme }) => theme.input.bg.color};
+    color: ${({ theme }) => theme.text.placeholder};
 
     display: flex;
     align-items: center;
@@ -18,8 +23,19 @@ export const Container = styled.div`
 
     svg {
         margin-right: 16px;
-        ${({ theme }) => theme.input.placeholder};
     }
+
+    ${(props) =>
+        props.isFocused &&
+        css`
+            color: ${({ theme }) => theme.primary};
+            border-color: ${({ theme }) => theme.primary};
+        `}
+    ${(props) =>
+        props.isFielled &&
+        css`
+            color: ${({ theme }) => theme.primary};
+        `}
 
     input {
         color: ${({ theme }) => theme.text.light};
@@ -28,7 +44,7 @@ export const Container = styled.div`
         background-color: transparent;
 
         &::placeholder {
-            ${({ theme }) => theme.input.placeholder};
+            ${({ theme }) => theme.text.placeholder};
         }
     }
 `;

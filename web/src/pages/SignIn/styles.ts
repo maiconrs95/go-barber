@@ -42,7 +42,7 @@ export const Content = styled.div`
     }
 
     > a {
-        color: ${({ theme }) => theme.btn.bg.color};
+        color: ${({ theme }) => theme.primary};
         margin-top: 24px;
         text-decoration: none;
         transition: color 0.2s;
@@ -56,7 +56,7 @@ export const Content = styled.div`
         }
 
         &:hover {
-            color: ${({ theme }) => shade(0.2, theme.btn.bg.color)};
+            color: ${({ theme }) => shade(0.2, theme.primary)};
         }
     }
 `;
