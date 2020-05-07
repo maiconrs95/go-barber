@@ -26,7 +26,7 @@ const Input: React.FC<Inputprops> = forwardRef(
         const inputRef = useRef<HTMLInputElement>(null);
 
         useEffect(() => {
-            register(inputRef.current);
+            register && register(inputRef.current);
         }, [inputRef, register]);
 
         const [isFocused, setIsFocused] = useState(false);

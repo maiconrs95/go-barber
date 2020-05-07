@@ -15,9 +15,11 @@ import { Container, Content, Background } from './styles';
 const SignIn: React.FC = () => {
     const schema = Yup.object().shape({
         email: Yup.string()
-            .required('Obrigatório')
+            .required('E-mail obrigatório')
             .matches(/^\S+@\S+$/i, 'E-mail inválido'),
-        password: Yup.string().required('Obrigatório').min(6, 'Minimo 6'),
+        password: Yup.string()
+            .required('Senha obrigatório')
+            .min(6, 'Minimo 6 caracteres'),
     });
 
     const { register, handleSubmit, errors } = useForm({
