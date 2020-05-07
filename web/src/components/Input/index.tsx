@@ -9,7 +9,9 @@ import React, {
 } from 'react';
 
 import { IconBaseProps } from 'react-icons';
-import { Container } from './styles';
+import { FiAlertCircle } from 'react-icons/fi';
+
+import { Container, Error } from './styles';
 
 interface Inputprops extends InputHTMLAttributes<HTMLInputElement> {
     ref?: React.Ref<HTMLInputElement>;
@@ -41,7 +43,7 @@ const Input: React.FC<Inputprops> = forwardRef(
 
         return (
             <Container
-                isErrored={!!error?.length}
+                isErrored={!!error}
                 isFilled={isFilled}
                 isFocused={isFocused}
             >
@@ -54,7 +56,11 @@ const Input: React.FC<Inputprops> = forwardRef(
                     onBlur={handleInputBlur}
                 />
 
-                {error}
+                {error && (
+                    <Error title={error}>
+                        <FiAlertCircle size={20} />
+                    </Error>
+                )}
             </Container>
         );
     },

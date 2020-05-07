@@ -8,6 +8,7 @@ import GlobalStyle from './styles/global';
 const App: React.FC = () => {
     const darkTheme = {
         primary: '#ff9000',
+        secondary: '#312e38',
         error: '#c53030',
         main: {
             bg: {
