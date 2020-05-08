@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { FiMail, FiLock, FiLogIn } from 'react-icons/fi';
 
 import { useForm } from 'react-hook-form';
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -19,7 +19,7 @@ interface SignInFormData {
 }
 
 const SignIn: React.FC = () => {
-    const { singIn, user } = useContext(AuthContext);
+    const { singIn, user } = useAuth();
 
     const schema = Yup.object().shape({
         email: Yup.string()
