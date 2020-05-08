@@ -3,6 +3,8 @@ import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes';
 
+import { AuthProvier } from './context/AuthContext';
+
 import GlobalStyle from './styles/global';
 
 const App: React.FC = () => {
@@ -33,10 +35,12 @@ const App: React.FC = () => {
 
     return (
         <ThemeProvider theme={darkTheme}>
-            <BrowserRouter>
-                <Routes />
-                <GlobalStyle />
-            </BrowserRouter>
+            <AuthProvier>
+                <BrowserRouter>
+                    <Routes />
+                </BrowserRouter>
+            </AuthProvier>
+            <GlobalStyle />
         </ThemeProvider>
     );
 };

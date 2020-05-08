@@ -1,9 +1,10 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { FiMail, FiLock, FiLogIn } from 'react-icons/fi';
 
 import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../context/AuthContext';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -12,7 +13,14 @@ import logoImg from '../../assets/logo.svg';
 
 import { Container, Content, Background } from './styles';
 
+interface SignInFormData {
+    email: string;
+    password: string;
+}
+
 const SignIn: React.FC = () => {
+    const { singIn, user } = useContext(AuthContext);
+
     const schema = Yup.object().shape({
         email: Yup.string()
             .required('E-mail obrigatório')
@@ -27,9 +35,12 @@ const SignIn: React.FC = () => {
         mode: 'onBlur',
     });
 
-    const onSubmit = useCallback((data: object) => {
-        console.log(data);
-    }, []);
+    const onSubmit = useCallback(
+        (data: any) => {
+            singIn({ email: data.email, password: data.password });
+        },
+        [singIn],
+    );
 
     return (
         <Container>
