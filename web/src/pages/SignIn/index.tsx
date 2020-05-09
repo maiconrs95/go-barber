@@ -32,7 +32,11 @@ const SignIn: React.FC = () => {
 
     const onSubmit = useCallback(
         (data = {}) => {
-            signIn({ email: data.email, password: data.password });
+            try {
+                signIn({ email: data.email, password: data.password });
+            } catch (e) {
+                console.log(e);
+            }
         },
         [signIn],
     );
