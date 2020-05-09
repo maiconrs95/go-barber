@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes';
 
-import { AuthProvier } from './context/AuthContext';
+import { AuthProvier } from './hooks/AuthContext';
 
 import GlobalStyle from './styles/global';
 

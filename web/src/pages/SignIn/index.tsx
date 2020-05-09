@@ -1,10 +1,10 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { FiMail, FiLock, FiLogIn } from 'react-icons/fi';
 
 import { useForm } from 'react-hook-form';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -13,13 +13,8 @@ import logoImg from '../../assets/logo.svg';
 
 import { Container, Content, Background } from './styles';
 
-interface SignInFormData {
-    email: string;
-    password: string;
-}
-
 const SignIn: React.FC = () => {
-    const { singIn, user } = useAuth();
+    const { signIn } = useAuth();
 
     const schema = Yup.object().shape({
         email: Yup.string()
@@ -36,10 +31,10 @@ const SignIn: React.FC = () => {
     });
 
     const onSubmit = useCallback(
-        (data: any) => {
-            singIn({ email: data.email, password: data.password });
+        (data = {}) => {
+            signIn({ email: data.email, password: data.password });
         },
-        [singIn],
+        [signIn],
     );
 
     return (
