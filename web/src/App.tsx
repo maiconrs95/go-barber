@@ -3,9 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes';
 
-import { AuthProvier } from './hooks/AuthContext';
-
-import ToastContainer from './components/ToastContainer';
+import AppProvider from './hooks';
 
 import GlobalStyle from './styles/global';
 
@@ -37,12 +35,12 @@ const App: React.FC = () => {
 
     return (
         <ThemeProvider theme={darkTheme}>
-            <AuthProvier>
+            <AppProvider>
                 <BrowserRouter>
                     <Routes />
                 </BrowserRouter>
-            </AuthProvier>
-            <ToastContainer />
+            </AppProvider>
+
             <GlobalStyle />
         </ThemeProvider>
     );

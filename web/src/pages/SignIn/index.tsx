@@ -2,9 +2,10 @@ import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { FiMail, FiLock, FiLogIn } from 'react-icons/fi';
-
 import { useForm } from 'react-hook-form';
-import { useAuth } from '../../hooks/AuthContext';
+
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -15,6 +16,7 @@ import { Container, Content, Background } from './styles';
 
 const SignIn: React.FC = () => {
     const { signIn } = useAuth();
+    const { addToast } = useToast();
 
     const schema = Yup.object().shape({
         email: Yup.string()
@@ -31,14 +33,19 @@ const SignIn: React.FC = () => {
     });
 
     const onSubmit = useCallback(
-        (data = {}) => {
+        async (data = {}) => {
             try {
-                signIn({ email: data.email, password: data.password });
+                await signIn({ email: data.email, password: data.password });
             } catch (e) {
-                console.log(e);
+                addToast({
+                    type: 'error',
+                    title: 'Erro na autenticação',
+                    description:
+                        'Ocorreu um erro ao fazer login, cheque as credenciais.',
+                });
             }
         },
-        [signIn],
+        [signIn, addToast],
     );
 
     return (
