@@ -12,7 +12,7 @@ import Button from '../../components/Button';
 
 import logoImg from '../../assets/logo.svg';
 
-import { Container, Content, Background } from './styles';
+import { Container, Content, AnimationContainer, Background } from './styles';
 
 const SignIn: React.FC = () => {
     const { signIn } = useAuth();
@@ -51,36 +51,38 @@ const SignIn: React.FC = () => {
     return (
         <Container>
             <Content>
-                <img src={logoImg} alt="Go-Barber" />
+                <AnimationContainer>
+                    <img src={logoImg} alt="Go-Barber" />
 
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <h1>Faça seu logon</h1>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <h1>Faça seu logon</h1>
 
-                    <Input
-                        placeholder="E-mail"
-                        type="text"
-                        name="email"
-                        icon={FiMail}
-                        error={errors.email?.message}
-                        register={register}
-                    />
-                    <Input
-                        placeholder="Password"
-                        type="password"
-                        name="password"
-                        icon={FiLock}
-                        error={errors.password?.message}
-                        register={register}
-                    />
+                        <Input
+                            placeholder="E-mail"
+                            type="text"
+                            name="email"
+                            icon={FiMail}
+                            error={errors.email?.message}
+                            register={register}
+                        />
+                        <Input
+                            placeholder="Password"
+                            type="password"
+                            name="password"
+                            icon={FiLock}
+                            error={errors.password?.message}
+                            register={register}
+                        />
 
-                    <Button type="submit">Entrar</Button>
+                        <Button type="submit">Entrar</Button>
 
-                    <a href="void(0)">Esqueci minha senha</a>
-                </form>
-                <Link to="/signup">
-                    <FiLogIn />
-                    Criar conta
-                </Link>
+                        <a href="void(0)">Esqueci minha senha</a>
+                    </form>
+                    <Link to="/signup">
+                        <FiLogIn />
+                        Criar conta
+                    </Link>
+                </AnimationContainer>
             </Content>
             <Background />
         </Container>

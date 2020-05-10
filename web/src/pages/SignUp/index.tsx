@@ -10,7 +10,7 @@ import Button from '../../components/Button';
 
 import logoImg from '../../assets/logo.svg';
 
-import { Container, Content, Background } from './styles';
+import { Container, Content, AnimationContainer, Background } from './styles';
 
 const SignIn: React.FC = () => {
     const schema = Yup.object().shape({
@@ -39,42 +39,44 @@ const SignIn: React.FC = () => {
         <Container>
             <Background />
             <Content>
-                <img src={logoImg} alt="Go-Barber" />
+                <AnimationContainer>
+                    <img src={logoImg} alt="Go-Barber" />
 
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <h1>Faça seu logon</h1>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <h1>Faça seu logon</h1>
 
-                    <Input
-                        placeholder="Nome"
-                        type="text"
-                        name="name"
-                        icon={FiUser}
-                        error={errors.name?.message}
-                        register={register}
-                    />
-                    <Input
-                        placeholder="E-mail"
-                        type="text"
-                        name="email"
-                        icon={FiMail}
-                        error={errors.email?.message}
-                        register={register}
-                    />
-                    <Input
-                        placeholder="Password"
-                        type="password"
-                        name="password"
-                        icon={FiLock}
-                        error={errors.password?.message}
-                        register={register}
-                    />
+                        <Input
+                            placeholder="Nome"
+                            type="text"
+                            name="name"
+                            icon={FiUser}
+                            error={errors.name?.message}
+                            register={register}
+                        />
+                        <Input
+                            placeholder="E-mail"
+                            type="text"
+                            name="email"
+                            icon={FiMail}
+                            error={errors.email?.message}
+                            register={register}
+                        />
+                        <Input
+                            placeholder="Password"
+                            type="password"
+                            name="password"
+                            icon={FiLock}
+                            error={errors.password?.message}
+                            register={register}
+                        />
 
-                    <Button type="submit">Entrar</Button>
-                </form>
-                <Link to="/">
-                    <FiArrowLeft />
-                    Já possuo uma conta
-                </Link>
+                        <Button type="submit">Entrar</Button>
+                    </form>
+                    <Link to="/">
+                        <FiArrowLeft />
+                        Já possuo uma conta
+                    </Link>
+                </AnimationContainer>
             </Content>
         </Container>
     );
